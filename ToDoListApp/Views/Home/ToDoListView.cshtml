@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "To Do List";
+}
+
+@model List<ToDoList>
+
+<div class="text-center">
+    <h1 class="display-4">To Do List</h1>
+    <a asp-controller="Home" asp-action="CreateEditTaskView" class="btn btn-primary">Create a new task</a>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Task
+                </th>
+                <th>
+                    Completed
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.Task
+                        </td>
+                        <td>
+                            @item.Completed
+                        </td>
+                        <td>
+                            <a asp-action="CreateEditTaskView" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="DeleteTask" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+         </tbody>
+    </table>
+</div>
